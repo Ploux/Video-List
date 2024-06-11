@@ -8,37 +8,38 @@
 import SwiftUI
 
 struct VideoListView: View {
-    var videos: [Video] = VideoList.topTen
+    var swings: [Swing] = SwingList.Swings
     var body: some View {
         NavigationView {
-            List(videos, id: \.id) { video in
+            List(swings, id: \.id) { swing in
                 NavigationLink(
-                    destination: VideoDetailView(video: video), label: {
-                        VideoCell(video: video)
+                    destination: VideoDetailView(swing: swing), label: {
+                        VideoCell(swing: swing)
                     })
             } // end List
-            .navigationTitle("Top Ten")
+            .navigationTitle("My Swings")
         } // end NavigationView
     } // end of body
 } // end VideoListView
 
 struct VideoCell: View {
     
-    var video: Video
+    var swing: Swing
     
     var body: some View {
-        Image(video.imageName)
+        Image(swing.imageName)
             .resizable()
             .scaledToFit()
             .frame(height: 70)
             .cornerRadius(4)
             .padding(.vertical, 4)
         VStack (alignment: .leading, spacing: 5) {
-            Text(video.title)
+            Text(swing.date)
                 .fontWeight(.semibold)
-                .lineLimit(2)
-                .minimumScaleFactor(0.5)
-            Text(video.uploadDate)
+            Text(swing.time)
+                .font(.subheadline)
+                .foregroundColor(.secondary)            
+            Text(swing.course)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }

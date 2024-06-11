@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct VideoDetailView: View {
-    var video: Video
+    var swing: Swing
     var body: some View {
         VStack(spacing:20) {
-            Spacer()
+
             
-            Image(video.imageName)
+            Image(swing.imageName)
                 .resizable()
                 .scaledToFit()
-                .frame(height: 150)
+                .frame(height: 450)
                 .cornerRadius(12)
-            Text(video.title)
+            Text(swing.date)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .lineLimit(2)
@@ -26,24 +26,26 @@ struct VideoDetailView: View {
                 .padding(.horizontal)
             
             HStack (spacing: 40) {
-                Label("\(video.viewCount)", systemImage: "eye.fill")
+                Label("\(swing.smoothness)", systemImage: "eye.fill")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             
-                Text(video.uploadDate)
+                Text(swing.course)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
             
-            Text(video.description)
+            Text(swing.club)
                 .font(.body)
                 .padding()
             
             Spacer()
             
-            Link(destination: video.url, label: {
-                StandardButton(title: "Watch Now")
+            Link(destination: swing.url, label: {
+                StandardButton(title: "Watch Swing")
             })
+            
+            Spacer()
                 
         }
     }
@@ -66,5 +68,5 @@ struct StandardButton: View {
 
 
 #Preview {
-    VideoDetailView(video: VideoList.topTen.first!)
+    VideoDetailView(swing: SwingList.Swings.first!)
 }
