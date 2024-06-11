@@ -13,17 +13,18 @@ struct VideoListView: View {
         NavigationView {
             List(videos, id: \.id) { video in
                 HStack {
-                    Image("average-dev")
+                    Image(video.imageName)
                         .resizable()
                         .scaledToFit()
                         .frame(height: 70)
                         .cornerRadius(4)
+                        .padding(.vertical, 4)
                     VStack (alignment: .leading, spacing: 5) {
-                        Text("I'm an Average Developer")
+                        Text(video.title)
                             .fontWeight(.semibold)
                             .lineLimit(2)
                             .minimumScaleFactor(0.5)
-                        Text("January 1, 2021")
+                        Text(video.uploadDate)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
