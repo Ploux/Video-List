@@ -10,7 +10,9 @@ import SwiftUI
 struct VideoDetailView: View {
     var video: Video
     var body: some View {
-        VStack {
+        VStack(spacing:20) {
+            Spacer()
+            
             Image(video.imageName)
                 .resizable()
                 .scaledToFit()
@@ -21,9 +23,9 @@ struct VideoDetailView: View {
                 .fontWeight(.semibold)
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
-                .padding()
+                .padding(.horizontal)
             
-            HStack {
+            HStack (spacing: 40) {
                 Label("\(video.viewCount)", systemImage: "eye.fill")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
@@ -32,9 +34,26 @@ struct VideoDetailView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
-
+            
+            Text(video.description)
+                .font(.body)
+                .padding()
+            
+            Spacer()
+            
+            Link(destination: video.url, label: {
+                Text("Watch Now")
+                    .bold()
+                    .font(.title2)
+                    .frame(width: 280, height: 50, alignment: .center)
+                    .background(Color(.systemRed))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            })
+                
         }
     }
+    
 }
 
 #Preview {

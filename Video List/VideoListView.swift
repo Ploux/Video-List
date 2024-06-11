@@ -12,25 +12,27 @@ struct VideoListView: View {
     var body: some View {
         NavigationView {
             List(videos, id: \.id) { video in
-                HStack {
-                    Image(video.imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 70)
-                        .cornerRadius(4)
-                        .padding(.vertical, 4)
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text(video.title)
-                            .fontWeight(.semibold)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                        Text(video.uploadDate)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                }
+                NavigationLink(
+                    destination: VideoDetailView(video: video), label: {
+                        Image(video.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 70)
+                            .cornerRadius(4)
+                            .padding(.vertical, 4)
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text(video.title)
+                                .fontWeight(.semibold)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                            Text(video.uploadDate)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    })
             } // end List
             .navigationTitle("Top Ten")
+            .preferredColorScheme(.dark)
         
         } // end NavigationView
         
